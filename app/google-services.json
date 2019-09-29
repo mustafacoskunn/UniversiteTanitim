@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "589733440147",
+    "firebase_url": "https://universitetanitim-2d6d6.firebaseio.com",
+    "project_id": "universitetanitim-2d6d6",
+    "storage_bucket": "universitetanitim-2d6d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589733440147:android:71da78a591725e99bfbb66",
+        "android_client_info": {
+          "package_name": "com.info.sozlukuygulamasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589733440147-vah1otvg5oitkavuq82bchd1vu7bc94l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.info.sozlukuygulamasi",
+            "certificate_hash": "7327eed3f03f16ad989aac6db9a0cff8b48250f9"
+          }
+        },
+        {
+          "client_id": "589733440147-ilh1kmiqahjkdamp8l6gqmpp8nohtk6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTSQpFmYmkgPTrDP4gQjK-GvIXqH3K8xE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589733440147-ilh1kmiqahjkdamp8l6gqmpp8nohtk6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589733440147:android:15b96c1477bad80bbfbb66",
+        "android_client_info": {
+          "package_name": "ornek.uygulama.com.universitetanitim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589733440147-ilh1kmiqahjkdamp8l6gqmpp8nohtk6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTSQpFmYmkgPTrDP4gQjK-GvIXqH3K8xE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589733440147-ilh1kmiqahjkdamp8l6gqmpp8nohtk6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
