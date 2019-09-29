@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private UniversitelerAdapter adapter;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         toolbar = findViewById(R.id.toolbar);
         rv = findViewById(R.id.rv);
+        progressBar=findViewById(R.id.progressBar);
         toolbar.setTitle("Üniversite Tanıtım");
         setSupportActionBar(toolbar);
 
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
 
                 universitelerListe.clear();
 
@@ -96,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 }
 
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
 

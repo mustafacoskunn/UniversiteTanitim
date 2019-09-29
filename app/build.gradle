@@ -33,4 +33,7 @@ dependencies {
 
     //Firebase Kütüphanesi
     implementation 'com.google.firebase:firebase-database:11.8.0'
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }
