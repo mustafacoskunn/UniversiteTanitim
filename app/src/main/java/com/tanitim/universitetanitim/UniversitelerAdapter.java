@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -33,14 +35,26 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
     }
 
     @Override
-    public void onBindViewHolder(CardTasarimTutucu holder, int position) {
+    public void onBindViewHolder(final CardTasarimTutucu holder, int position) {
         final Universiteler universite = universitelerListe.get(position);
+
 
         Picasso.with(mContext)
                 .load("https://takipgym.com/logo/"+universitelerListe.get(position).getSlug()+".png")
-                .into(holder.logo);
+                .into(holder.logo, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        holder.resimProgress.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        holder.resimProgress.setVisibility(View.VISIBLE);
+
+                    }
+                });
         holder.textViewIsim.setText(universite.getIsim());
-        holder.textViewID.setText(universite.getUniversite_id());
+        holder.textViewID.setText(universite.getIl());
 
         holder.universiteler_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +81,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
         private TextView textViewID;
         private CardView universiteler_card;
         private ImageView logo;
+        private ProgressBar resimProgress;
 
         public CardTasarimTutucu(View itemView) {
             super(itemView);
@@ -74,6 +89,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
             textViewID = itemView.findViewById(R.id.textViewID);
             universiteler_card = itemView.findViewById(R.id.universiteler_card);
             logo = itemView.findViewById(R.id.logo);
+            resimProgress = itemView.findViewById(R.id.resimProgress);
 
         }
     }

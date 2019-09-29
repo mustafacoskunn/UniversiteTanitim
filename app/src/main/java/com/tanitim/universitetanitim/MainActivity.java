@@ -116,6 +116,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
 
+    public static String karakterCevir(String kelime)
+    {
+        String mesaj = kelime;
+        char[] oldValue = new char[] { 'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş' };
+        char[] newValue = new char[] { 'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's' };
+        for (int sayac = 0; sayac < oldValue.length; sayac++)
+        {
+            mesaj = mesaj.replace(oldValue[sayac], newValue[sayac]);
+        }
+        return mesaj;
+    }
     public void arama(final String universiteAra){
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -124,13 +135,28 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
                 universitelerListe.clear();
 
+                String kucuk=universiteAra.toLowerCase();
+
+                String cevir=karakterCevir(kucuk);
+                String sehir=universiteAra.toUpperCase();
+
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     Universiteler universite = d.getValue(Universiteler.class);
 
-                    if(universite.getIsim().contains(universiteAra)){
+                    if(universite.getSlug().contains(cevir)){
                         universite.setUniversite_id(d.getKey());
                         universitelerListe.add(universite);
+
+
                     }
+                    else if(universite.getIl().contains(sehir)){
+                        universite.setUniversite_id(d.getKey());
+                        universitelerListe.add(universite);
+
+
+                    }
+
+
                 }
 
                 adapter.notifyDataSetChanged();

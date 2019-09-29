@@ -18,6 +18,8 @@ public class DetayActivity extends AppCompatActivity {
         textViewID = findViewById(R.id.textViewID);
 
         universite = (Universiteler) getIntent().getSerializableExtra("nesne");
+        textViewIsim.setText(universite.getIsim());
+        textViewID.setText(universite.getBolge()+" BÖLGESİ");
 
         Log.e("getAdres:",universite.getAdres());
         Log.e("getEposta:",universite.getEposta());
