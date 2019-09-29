@@ -10,6 +10,13 @@
         <!--Kendi toolbarımızı koyabilmek için varsayılan olanı yok ediyoruz.-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+
+    </style>
+
+    <style name="BackGroundImageView">
+        <item name="android:alpha">0.75</item>
+        <item name="android:scaleType">fitXY</item>
+
     </style>
 
 </resources>
