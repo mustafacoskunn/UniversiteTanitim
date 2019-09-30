@@ -14,7 +14,7 @@
     </style>
 
     <style name="BackGroundImageView">
-        <item name="android:alpha">0.75</item>
+        <item name="android:alpha">0.85</item>
         <item name="android:scaleType">fitXY</item>
 
     </style>

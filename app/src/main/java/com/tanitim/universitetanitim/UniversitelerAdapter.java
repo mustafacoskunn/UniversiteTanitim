@@ -2,7 +2,7 @@ package com.tanitim.universitetanitim;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,6 +53,9 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
 
                     }
                 });
+        Picasso.with(mContext)
+                .load("https://takipgym.com/resim/"+universitelerListe.get(position).getSlug()+".webp")
+                .into(holder.arkaplan);
         holder.textViewIsim.setText(universite.getIsim());
         holder.textViewID.setText(universite.getIl());
 
@@ -80,7 +83,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
         private TextView textViewIsim;
         private TextView textViewID;
         private CardView universiteler_card;
-        private ImageView logo;
+        private ImageView logo,arkaplan;
         private ProgressBar resimProgress;
 
         public CardTasarimTutucu(View itemView) {
@@ -90,6 +93,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
             universiteler_card = itemView.findViewById(R.id.universiteler_card);
             logo = itemView.findViewById(R.id.logo);
             resimProgress = itemView.findViewById(R.id.resimProgress);
+            arkaplan = itemView.findViewById(R.id.arkaplan);
 
         }
     }
