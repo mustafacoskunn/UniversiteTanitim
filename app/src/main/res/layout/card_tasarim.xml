@@ -35,13 +35,16 @@
                 android:scaleType="centerCrop"
 
 
-                android:tint="#6F585050"
-                app:srcCompat="@drawable/af11e4fb77dd0663bb6f6879e0b92ec5"></ImageView>
+                android:tint="#6F1D1919"
+                app:layout_collapseMode="parallax"
+                android:fitsSystemWindows="true"
+
+                ></ImageView>
 
 
             <ProgressBar
                 android:id="@+id/resimProgress"
-                style="?android:attr/progressBarStyle"
+                style="@style/Widget.AppCompat.ProgressBar"
 
                 android:layout_width="50dp"
                 android:layout_height="50dp"
