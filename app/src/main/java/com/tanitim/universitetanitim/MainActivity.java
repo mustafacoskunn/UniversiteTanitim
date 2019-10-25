@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         toolbar = findViewById(R.id.toolbar);
         rv = findViewById(R.id.rv);
         progressBar=findViewById(R.id.progressBar);
-        toolbar.setTitle("Üniversite Tanıtım");
+
         setSupportActionBar(toolbar);
+
+
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("universiteler");
@@ -56,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         universiteBilgi();
 
+
+
     }
 
     @Override
@@ -65,7 +71,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         MenuItem item = menu.findItem(R.id.action_ara);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+
+
+        searchEditText.setTextColor(getResources().getColor(R.color.black));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.hit));
+        ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+
+        searchView.setQueryHint("Süleyman Demirel Üniversitesi");
         searchView.setOnQueryTextListener(this);
+
+
         return super.onCreateOptionsMenu(menu);
     }
 

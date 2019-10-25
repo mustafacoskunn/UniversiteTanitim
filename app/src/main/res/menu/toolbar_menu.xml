@@ -4,8 +4,9 @@
 
     <item
         android:id="@+id/action_ara"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always|collapseActionView"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Ara" />
+        android:title="Süleyman Demirel Üniversitesi"
+        android:titleCondensed="Süleyman Demirel Üniversitesi"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
 </menu>
