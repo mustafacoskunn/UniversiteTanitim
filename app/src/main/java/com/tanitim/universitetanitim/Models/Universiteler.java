@@ -1,4 +1,4 @@
-package com.tanitim.universitetanitim;
+package com.tanitim.universitetanitim.Models;
 
 import java.io.Serializable;
 

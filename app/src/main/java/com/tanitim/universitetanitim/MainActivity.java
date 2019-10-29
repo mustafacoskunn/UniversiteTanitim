@@ -1,201 +1,102 @@
 package com.tanitim.universitetanitim;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
+import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
+import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
+import com.tanitim.universitetanitim.Adapters.ViewPagerAdapter;
+import com.tanitim.universitetanitim.Fragments.AnasayfaFragment;
+import com.tanitim.universitetanitim.Fragments.KarsilastirFragment;
+import com.tanitim.universitetanitim.Fragments.SehirlerFragment;
+import com.tanitim.universitetanitim.Fragments.UniversitelerFragment;
+import com.tanitim.universitetanitim.R;
 
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    private Toolbar toolbar;
-    private RecyclerView rv;
-    private ArrayList<Universiteler> universitelerListe;
-    private UniversitelerAdapter adapter;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-    private ProgressBar progressBar;
+
+public class MainActivity extends AppCompatActivity {
+
+
+
+    private ViewPager viewPager;
+
+
+    //Fragments
+
+    UniversitelerFragment universitelerFragment;
+    AnasayfaFragment anasayfaFragment;
+    KarsilastirFragment karsilastirFragment;
+    SehirlerFragment sehirlerFragment;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        toolbar = findViewById(R.id.toolbar);
-        rv = findViewById(R.id.rv);
-        progressBar=findViewById(R.id.progressBar);
-
-        toolbar.setTitle("Üniversiteler");
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.black));
-        setSupportActionBar(toolbar);
+        viewPager = findViewById(R.id.view_pager);
 
 
+        final BubbleNavigationLinearView bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
+        bubbleNavigationLinearView.setTypeface(Typeface.createFromAsset(getAssets(), "rubik.ttf"));
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("universiteler");
-
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
-        universitelerListe = new ArrayList<>();
-
-        adapter = new UniversitelerAdapter(this, universitelerListe);
-
-        rv.setAdapter(adapter);
-
-
-        universiteBilgi();
-
-
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
-
-        MenuItem item = menu.findItem(R.id.action_ara);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-
-
-        searchEditText.setTextColor(getResources().getColor(R.color.black));
-        searchEditText.setHintTextColor(getResources().getColor(R.color.hit));
-        ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-
-        searchView.setQueryHint("Süleyman Demirel Üniversitesi");
-        searchView.setOnQueryTextListener(this);
-
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        Log.e("Gönderilen arama",query);
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        Log.e("Harf girdikçe",newText);
-        arama(newText);
-        return false;
-    }
-
-
-    public void universiteBilgi(){
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        bubbleNavigationLinearView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                progressBar.setVisibility(View.GONE);
+            public void onNavigationChanged(View view, int position) {
 
-                universitelerListe.clear();
-
-                for(DataSnapshot d : dataSnapshot.getChildren()){
-                    Universiteler universite = d.getValue(Universiteler.class);
-                    universite.setUniversite_id(d.getKey());
-
-                    universitelerListe.add(universite);
-
+                switch (view.getId()) {
+                    case R.id.l_item_home:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.l_item_search:
+                        viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.l_item_profile_list:
+                        viewPager.setCurrentItem(2);
+                        break;
+                    case R.id.l_item_profilee_list:
+                        viewPager.setCurrentItem(3);
+                        break;
                 }
-
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.INVISIBLE);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
 
-
-    }
-
-
-    public static String karakterCevir(String kelime)
-    {
-        String mesaj = kelime;
-        char[] oldValue = new char[] { 'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş' };
-        char[] newValue = new char[] { 'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's' };
-        for (int sayac = 0; sayac < oldValue.length; sayac++)
-        {
-            mesaj = mesaj.replace(oldValue[sayac], newValue[sayac]);
-        }
-        return mesaj;
-    }
-    public void arama(final String universiteAra){
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                universitelerListe.clear();
-
-                String kucuk=universiteAra.toLowerCase();
-
-                String cevir=karakterCevir(kucuk);
-                String sehir=universiteAra.toUpperCase();
-
-                for(DataSnapshot d : dataSnapshot.getChildren()){
-                    Universiteler universite = d.getValue(Universiteler.class);
-
-                    if(universite.getSlug().contains(cevir)){
-                        universite.setUniversite_id(d.getKey());
-                        universitelerListe.add(universite);
-
-
-                    }
-                    else if(universite.getIl().contains(sehir)){
-                        universite.setUniversite_id(d.getKey());
-                        universitelerListe.add(universite);
-
-
-                    }
-
-
-                }
-
-                adapter.notifyDataSetChanged();
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onPageSelected(int position) {
+                bubbleNavigationLinearView.setCurrentActiveItem(position);
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
             }
         });
 
-
-
+        setupViewPager(viewPager);
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        anasayfaFragment =new AnasayfaFragment();
+        universitelerFragment =new UniversitelerFragment();
+        karsilastirFragment =new KarsilastirFragment();
+        sehirlerFragment =new SehirlerFragment();
 
-
-
-
+        adapter.addFragment(anasayfaFragment);
+        adapter.addFragment(universitelerFragment);
+        adapter.addFragment(karsilastirFragment);
+        adapter.addFragment(sehirlerFragment);
+        viewPager.setAdapter(adapter);
+    }
 }

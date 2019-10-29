@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.tanitim.universitetanitim.Models.Universiteler;
+
 public class DetayActivity extends AppCompatActivity {
     private TextView textViewIsim;
     private TextView textViewID;

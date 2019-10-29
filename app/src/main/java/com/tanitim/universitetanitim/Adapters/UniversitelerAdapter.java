@@ -1,8 +1,8 @@
-package com.tanitim.universitetanitim;
+package com.tanitim.universitetanitim.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.tanitim.universitetanitim.DetayActivity;
+import com.tanitim.universitetanitim.Models.Universiteler;
+import com.tanitim.universitetanitim.R;
 
 import java.util.List;
 
@@ -39,6 +42,9 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
         final Universiteler universite = universitelerListe.get(position);
 
 
+        holder.resimProgress.getIndeterminateDrawable().setColorFilter(mContext.getResources()
+                .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN);
+
         Picasso.with(mContext)
                 .load("https://takipgym.com/logo/"+universitelerListe.get(position).getSlug()+".png")
                 .into(holder.logo, new Callback() {
@@ -63,7 +69,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext,DetayActivity.class);
+                Intent intent = new Intent(mContext, DetayActivity.class);
 
                 intent.putExtra("nesne",universite);
 
