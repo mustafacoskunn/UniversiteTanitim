@@ -1,7 +1,7 @@
 package com.tanitim.universitetanitim.Fragments;
 
 
-import android.graphics.PorterDuff;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,18 +20,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.tanitim.universitetanitim.Adapters.UniversitelerAdapter;
 import com.tanitim.universitetanitim.Models.Universiteler;
 import com.tanitim.universitetanitim.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class UniversitelerFragment extends Fragment implements SearchView.OnQueryTextListener {
@@ -43,37 +51,33 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
     private RecyclerView rv;
     private ArrayList<Universiteler> universitelerListe;
     private UniversitelerAdapter adapter;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-    private ProgressBar progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_universiteler, container, false);
         toolbar = view.findViewById(R.id.toolbar);
         rv = view.findViewById(R.id.rv);
-        progressBar=view.findViewById(R.id.progressBar);
 
         toolbar.setTitle("Üniversiteler");
         toolbar.setTitleTextColor(ContextCompat.getColor(getContext(), R.color.black));
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("universiteler");
+
+
 
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         universitelerListe = new ArrayList<>();
-
+        universiteBilgi();
         adapter = new UniversitelerAdapter(getContext(), universitelerListe);
 
         rv.setAdapter(adapter);
         setHasOptionsMenu(true);
 
-        universiteBilgi();
-        progressBar.getIndeterminateDrawable().setColorFilter(getResources()
-                .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN);
+
+     //   progressBar.getIndeterminateDrawable().setColorFilter(getResources()
+       //         .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN);
 
 
         return view;
@@ -94,7 +98,7 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         searchEditText.setHintTextColor(getResources().getColor(R.color.hit));
         ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
 
-        searchView.setQueryHint("Süleyman Demirel Üniversitesi");
+        searchView.setQueryHint("Süleyman Demirel Üniversitesi...");
         searchView.setOnQueryTextListener(this);
 
 
@@ -104,33 +108,88 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
 
     public void universiteBilgi(){
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        String url = "https://universitetanitim.tk/tum_universiteler.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                progressBar.setVisibility(View.GONE);
+            public void onResponse(String response) {
 
-                universitelerListe.clear();
+                universitelerListe = new ArrayList<>();
 
-                for(DataSnapshot d : dataSnapshot.getChildren()){
-                    Universiteler universite = d.getValue(Universiteler.class);
-                    universite.setUniversite_id(d.getKey());
+                try {
+                    JSONObject jsonObj = new JSONObject(response);
 
-                    universitelerListe.add(universite);
+
+                    JSONArray universiteler = jsonObj.getJSONArray("universiteler");
+
+                    // looping through All Contacts
+                    for (int i = 0; i < universiteler.length(); i++) {
+                        JSONObject u = universiteler.getJSONObject(i);
+
+                         String adres=u.getString("adres");
+                         int arastirma=u.getInt("arastirma");
+                         int docent=u.getInt("docent");
+                         int doktor=u.getInt("doktor");
+                         int doktoraerkek=u.getInt("doktoraerkek");
+                         int doktorakadin=u.getInt("doktorakadin");
+                         int doktoratoplam=u.getInt("doktoratoplam");
+                         String eposta=u.getString("eposta");
+                         String il=u.getString("il");
+                         String isim=u.getString("isim");
+                         String kurulus=u.getString("kurulus");
+                         int lisanserkek=u.getInt("lisanserkek");
+                         int lisanskadin=u.getInt("lisanskadin");
+                         int lisanstoplam=u.getInt("lisanstoplam");
+                         int ogretim=u.getInt("ogretim");
+                         int onlisanserkek=u.getInt("onlisanserkek");
+                         int onlisanskadin=u.getInt("onlisanskadin");
+                         int onlisanstoplam=u.getInt("onlisanstoplam");
+                         int profesor=u.getInt("profesor");
+                         String rektor=u.getString("rektor");
+                         String slug=u.getString("slug");
+                         int toplam=u.getInt("toplam");
+                         int toplamerkek=u.getInt("toplamerkek");
+                         int toplamkadin=u.getInt("toplamkadin");
+                         String tur=u.getString("tur");
+                         String website=u.getString("website");
+                         int yukseklisanserkek=u.getInt("yukseklisanserkek");
+                         int yukseklisanskadin=u.getInt("yukseklisanskadin");
+                         int yukseklisanstoplam=u.getInt("yukseklisanstoplam");
+                         String fax=u.getString("fax");
+                         String bolge=u.getString("bolge");
+                         String telefon=u.getString("telefon");
+
+
+
+
+
+                        Universiteler universite = new Universiteler( adres,  arastirma,  docent,  doktor,  doktoraerkek,  doktorakadin,  doktoratoplam,  eposta,  il,  isim,  kurulus,  lisanserkek,  lisanskadin,  lisanstoplam,  ogretim,  onlisanserkek,  onlisanskadin,  onlisanstoplam,  profesor,  rektor,  slug,  toplam,  toplamerkek,  toplamkadin,  tur,  website,  yukseklisanserkek,  yukseklisanskadin,  yukseklisanstoplam,  fax,  bolge,  telefon);
+
+                        universitelerListe.add(universite);
+
+                    }
+
+                    adapter = new UniversitelerAdapter(getActivity().getApplicationContext(),universitelerListe);
+
+                    rv.setAdapter(adapter);
+
+
+                } catch (JSONException e) {
+                    System.out.println("hata:"+e);
+
 
                 }
 
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.INVISIBLE);
-
             }
-
+        }, new Response.ErrorListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("hata");
 
             }
         });
 
-
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(stringRequest);
 
     }
 
@@ -141,64 +200,115 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        arama(newText);
+        kelimeAra(newText);
         return false;
     }
-    public static String karakterCevir(String kelime)
-    {
-        String mesaj = kelime;
-        char[] oldValue = new char[] { 'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş' };
-        char[] newValue = new char[] { 'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's' };
-        for (int sayac = 0; sayac < oldValue.length; sayac++)
-        {
-            mesaj = mesaj.replace(oldValue[sayac], newValue[sayac]);
-        }
-        return mesaj;
-    }
 
-    public void arama(final String universiteAra){
 
-        myRef.addValueEventListener(new ValueEventListener() {
+    public void kelimeAra(final String aramaKelime){
+
+        String url = "https://universitetanitim.tk/universite_ara.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onResponse(String response) {
 
-                universitelerListe.clear();
+                universitelerListe = new ArrayList<>();
 
-                String kucuk=universiteAra.toLowerCase();
+                try {
+                    JSONObject jsonObj = new JSONObject(response);
 
-                String cevir=karakterCevir(kucuk);
-                String sehir=universiteAra.toUpperCase();
 
-                for(DataSnapshot d : dataSnapshot.getChildren()){
-                    Universiteler universite = d.getValue(Universiteler.class);
+                    JSONArray universiteler = jsonObj.getJSONArray("universiteler");
 
-                    if(universite.getSlug().contains(cevir)){
-                        universite.setUniversite_id(d.getKey());
-                        universitelerListe.add(universite);
+                        for (int i = 0; i < universiteler.length(); i++) {
+                            JSONObject u = universiteler.getJSONObject(i);
+
+                            String adres=u.getString("adres");
+                            int arastirma=u.getInt("arastirma");
+                            int docent=u.getInt("docent");
+                            int doktor=u.getInt("doktor");
+                            int doktoraerkek=u.getInt("doktoraerkek");
+                            int doktorakadin=u.getInt("doktorakadin");
+                            int doktoratoplam=u.getInt("doktoratoplam");
+                            String eposta=u.getString("eposta");
+                            String il=u.getString("il");
+                            String isim=u.getString("isim");
+                            String kurulus=u.getString("kurulus");
+                            int lisanserkek=u.getInt("lisanserkek");
+                            int lisanskadin=u.getInt("lisanskadin");
+                            int lisanstoplam=u.getInt("lisanstoplam");
+                            int ogretim=u.getInt("ogretim");
+                            int onlisanserkek=u.getInt("onlisanserkek");
+                            int onlisanskadin=u.getInt("onlisanskadin");
+                            int onlisanstoplam=u.getInt("onlisanstoplam");
+                            int profesor=u.getInt("profesor");
+                            String rektor=u.getString("rektor");
+                            String slug=u.getString("slug");
+                            int toplam=u.getInt("toplam");
+                            int toplamerkek=u.getInt("toplamerkek");
+                            int toplamkadin=u.getInt("toplamkadin");
+                            String tur=u.getString("tur");
+                            String website=u.getString("website");
+                            int yukseklisanserkek=u.getInt("yukseklisanserkek");
+                            int yukseklisanskadin=u.getInt("yukseklisanskadin");
+                            int yukseklisanstoplam=u.getInt("yukseklisanstoplam");
+                            String fax=u.getString("fax");
+                            String bolge=u.getString("bolge");
+                            String telefon=u.getString("telefon");
+
+
+
+
+
+                            Universiteler universite = new Universiteler( adres,  arastirma,  docent,  doktor,  doktoraerkek,  doktorakadin,  doktoratoplam,  eposta,  il,  isim,  kurulus,  lisanserkek,  lisanskadin,  lisanstoplam,  ogretim,  onlisanserkek,  onlisanskadin,  onlisanstoplam,  profesor,  rektor,  slug,  toplam,  toplamerkek,  toplamkadin,  tur,  website,  yukseklisanserkek,  yukseklisanskadin,  yukseklisanstoplam,  fax,  bolge,  telefon);
+
+
+                            universitelerListe.add(universite);
+
+
+
 
 
                     }
-                    else if(universite.getIl().contains(sehir)){
-                        universite.setUniversite_id(d.getKey());
-                        universitelerListe.add(universite);
 
 
-                    }
+
+                    adapter = new UniversitelerAdapter(getActivity().getApplicationContext(),universitelerListe);
+
+                    rv.setAdapter(adapter);
+
+
+                } catch (JSONException e) {
+                    System.out.println("hata:"+e);
 
 
                 }
 
-                adapter.notifyDataSetChanged();
-
             }
-
+        }, new Response.ErrorListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("hata:"+error);
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
 
+                Map<String, String> params = new HashMap<>();
 
+                params.put("isim",aramaKelime);
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(stringRequest);
 
     }
+
+
+
+
+
 }

@@ -34,12 +34,12 @@ public class Universiteler implements Serializable {
     private int yukseklisanserkek;
     private int yukseklisanskadin;
     private int yukseklisanstoplam;
-    private String universite_id;
+
     private String fax;
     private String bolge;
     private String telefon;
 
-    public Universiteler(String adres, int arastirma, int docent, int doktor, int doktoraerkek, int doktorakadin, int doktoratoplam, String eposta, String il, String isim, String kurulus, int lisanserkek, int lisanskadin, int lisanstoplam, int ogretim, int onlisanserkek, int onlisanskadin, int onlisanstoplam, int profesor, String rektor, String slug, int toplam, int toplamerkek, int toplamkadin, String tur, String website, int yukseklisanserkek, int yukseklisanskadin, int yukseklisanstoplam, String universite_id, String fax, String bolge, String telefon) {
+    public Universiteler(String adres, int arastirma, int docent, int doktor, int doktoraerkek, int doktorakadin, int doktoratoplam, String eposta, String il, String isim, String kurulus, int lisanserkek, int lisanskadin, int lisanstoplam, int ogretim, int onlisanserkek, int onlisanskadin, int onlisanstoplam, int profesor, String rektor, String slug, int toplam, int toplamerkek, int toplamkadin, String tur, String website, int yukseklisanserkek, int yukseklisanskadin, int yukseklisanstoplam, String fax, String bolge, String telefon) {
         this.adres = adres;
         this.arastirma = arastirma;
         this.docent = docent;
@@ -69,7 +69,7 @@ public class Universiteler implements Serializable {
         this.yukseklisanserkek = yukseklisanserkek;
         this.yukseklisanskadin = yukseklisanskadin;
         this.yukseklisanstoplam = yukseklisanstoplam;
-        this.universite_id = universite_id;
+
         this.fax = fax;
         this.bolge = bolge;
         this.telefon = telefon;
@@ -334,11 +334,5 @@ public class Universiteler implements Serializable {
         this.yukseklisanstoplam = yukseklisanstoplam;
     }
 
-    public String getUniversite_id() {
-        return universite_id;
-    }
 
-    public void setUniversite_id(String universite_id) {
-        this.universite_id = universite_id;
-    }
 }

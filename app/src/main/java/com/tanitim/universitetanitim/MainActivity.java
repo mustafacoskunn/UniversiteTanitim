@@ -12,7 +12,7 @@ import com.tanitim.universitetanitim.Fragments.AnasayfaFragment;
 import com.tanitim.universitetanitim.Fragments.KarsilastirFragment;
 import com.tanitim.universitetanitim.Fragments.SehirlerFragment;
 import com.tanitim.universitetanitim.Fragments.UniversitelerFragment;
-import com.tanitim.universitetanitim.R;
+
 
 
 

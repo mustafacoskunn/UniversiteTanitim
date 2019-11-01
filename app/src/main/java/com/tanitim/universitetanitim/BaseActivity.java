@@ -1,7 +1,6 @@
 package com.tanitim.universitetanitim;
 
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import com.jaeger.library.StatusBarUtil;
 
 
