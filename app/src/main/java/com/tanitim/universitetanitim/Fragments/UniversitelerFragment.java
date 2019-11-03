@@ -212,6 +212,7 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                System.out.println("cevap:"+response);
 
                 universitelerListe = new ArrayList<>();
 

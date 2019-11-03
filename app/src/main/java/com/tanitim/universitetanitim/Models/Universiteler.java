@@ -74,6 +74,10 @@ public class Universiteler implements Serializable {
         this.bolge = bolge;
         this.telefon = telefon;
     }
+    public Universiteler(String il){
+        this.il = il;
+
+    }
 
     public Universiteler() {
     }
