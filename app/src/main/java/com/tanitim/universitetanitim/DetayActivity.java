@@ -1,13 +1,13 @@
+
 package com.tanitim.universitetanitim;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.jaeger.library.StatusBarUtil;
 
@@ -51,11 +51,11 @@ public class DetayActivity extends BaseActivity {
 
 
         Picasso.with(DetayActivity.this)
-                .load("https://takipgym.com/resim/"+universite.getSlug()+".webp")
+                .load("https://tohere.net/yedek/resim/"+universite.getSlug()+".webp")
                 .into(detayImage);
 
+//
 
-        Log.e("getAdres:",universite.getAdres());
         Log.e("getEposta:",universite.getEposta());
         Log.e("getIl:",universite.getIl());
         Log.e("getIsim:",universite.getIsim());

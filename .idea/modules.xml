@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/UniversiteTanitim.iml" filepath="$PROJECT_DIR$/UniversiteTanitim.iml" group="UniversiteTanitim" />
+      <module fileurl="file://$PROJECT_DIR$/app/UniversiteTanitim-app.iml" filepath="$PROJECT_DIR$/app/UniversiteTanitim-app.iml" group="UniversiteTanitim/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/universiteTanitim.iml" filepath="$PROJECT_DIR$/universiteTanitim.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitirme-UniversiteTanitim.iml" filepath="$PROJECT_DIR$/bitirme-UniversiteTanitim.iml" group="UniversiteTanitim" />
     </modules>
   </component>
 </project>

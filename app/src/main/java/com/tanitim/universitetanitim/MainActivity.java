@@ -2,14 +2,18 @@ package com.tanitim.universitetanitim;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 import com.tanitim.universitetanitim.Adapters.ViewPagerAdapter;
 import com.tanitim.universitetanitim.Fragments.AnasayfaFragment;
 import com.tanitim.universitetanitim.Fragments.KarsilastirFragment;
+
 import com.tanitim.universitetanitim.Fragments.SehirlerFragment;
 import com.tanitim.universitetanitim.Fragments.UniversitelerFragment;
 
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final BubbleNavigationLinearView bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
-        bubbleNavigationLinearView.setTypeface(Typeface.createFromAsset(getAssets(), "rubik.ttf"));
+   //     bubbleNavigationLinearView.setTypeface(Typeface.createFromAsset(getAssets(), "rubok.ttc"));
 
         bubbleNavigationLinearView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
