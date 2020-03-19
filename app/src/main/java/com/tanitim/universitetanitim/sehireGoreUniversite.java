@@ -105,6 +105,8 @@ public class sehireGoreUniversite extends AppCompatActivity implements SearchVie
     public void kelimeAra(final String aramaKelime){
 
         //suan yok
+        //eklenecek
+        //şehirden üniversiteye geçerken bug var düzelt
 
 
 
