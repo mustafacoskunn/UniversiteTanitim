@@ -1,7 +1,7 @@
-
 package com.tanitim.universitetanitim.retrofit;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.tanitim.universitetanitim.Models.Universiteler;

@@ -1,4 +1,5 @@
 package com.tanitim.universitetanitim.Adapters;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -7,13 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.tanitim.universitetanitim.R;
 import com.tanitim.universitetanitim.Models.Universiteler;
 import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
-import com.tanitim.universitetanitim.sehireGoreUniversite;
+import com.tanitim.universitetanitim.Activity.UniversiteSehir;
 
 import java.util.List;
 
@@ -24,15 +27,15 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
     private UniversitelerDAOinterface universitelerDAOinterface;
 
     public SehirlerAdapter(Context mContext, List<Universiteler> universitelerListe
-            ,UniversitelerDAOinterface universitelerDAOinterface) {
+            , UniversitelerDAOinterface universitelerDAOinterface) {
         this.mContext = mContext;
         this.universitelerListe = universitelerListe;
-        this.universitelerDAOinterface=universitelerDAOinterface;
+        this.universitelerDAOinterface = universitelerDAOinterface;
     }
 
     @Override
     public CardTasarimTutucu onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_tasarim,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_sehir, parent, false);
 
         return new CardTasarimTutucu(view);
     }
@@ -46,33 +49,31 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
                 .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN); //ProgressBar Rengi */
 
 
-        String il=karakterCevir(universitelerListe.get(position).getIl()); //türkçe karakter silmek için
-        Glide.with(mContext).load("https://tohere.net/yedek/sehir/"+
-               il+"_optimized"+".jpg").into(holder.arkaplan);//Universite resim
+        String il = karakterCevir(universitelerListe.get(position).getIl()); //türkçe karakter silmek için
+        Glide.with(mContext).load("https://tohere.net/yedek/sehir/" +
+                il + "_optimized" + ".jpg").into(holder.arkaplan);//Sehir Resim
 
 
+        holder.textViewSehir.setText(universite.getIl()); //   // il textView
 
-        holder.textViewSehir.setText(universite.getIl()); //universite adı textview
-        // il textView
 
         //carda tıklandığında olucaklar
         holder.sehirler_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, sehireGoreUniversite.class);
-                intent.putExtra("nesne",  universite);
+                Intent intent = new Intent(mContext, UniversiteSehir.class);
+                intent.putExtra("nesne", universite);
                 mContext.startActivity(intent);
             }
         });
 
     }
-    public static String karakterCevir(String kelime)
-    {
+
+    public static String karakterCevir(String kelime) {
         String mesaj = kelime;
-        char[] oldValue = new char[] { 'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş' };
-        char[] newValue = new char[] { 'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's' };
-        for (int sayac = 0; sayac < oldValue.length; sayac++)
-        {
+        char[] oldValue = new char[]{'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş'};
+        char[] newValue = new char[]{'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's'};
+        for (int sayac = 0; sayac < oldValue.length; sayac++) {
             mesaj = mesaj.replace(oldValue[sayac], newValue[sayac]);
         }
         return mesaj;
@@ -85,12 +86,10 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
 
     }
 
-    public class CardTasarimTutucu extends RecyclerView.ViewHolder{
+    public class CardTasarimTutucu extends RecyclerView.ViewHolder {
         private TextView textViewSehir;
-
         private CardView sehirler_card;
         private ImageView arkaplan;
-
 
         public CardTasarimTutucu(View itemView) {
             super(itemView);

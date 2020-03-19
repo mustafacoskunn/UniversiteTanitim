@@ -1,9 +1,7 @@
 package com.tanitim.universitetanitim.Fragments;
 
-
 import android.content.Context;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,7 +46,6 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
     public SehirlerFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +58,7 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         universitelerDAOinterface = ApiUtils.getUniversilerDAOinterface();
         rv.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(gridLayoutManager);
         universitelerListe = new ArrayList<>();
@@ -81,7 +78,7 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-// toolbar setup
+        // toolbar setup
         inflater.inflate(R.menu.toolbar_menu, menu);
         MenuItem item = menu.findItem(R.id.action_ara);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
@@ -108,8 +105,6 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
 
             }
         });
-
-
     }
 
     @Override
@@ -125,25 +120,19 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
 
 
     public void kelimeAra(final String aramaKelime) {
-
         universitelerDAOinterface.ilAra(aramaKelime).enqueue(new Callback<UniversitelerCevap>() {
             @Override
             public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
                 List<Universiteler> liste = response.body().getUniversiteler();
                 if (liste != null) {
                     adapter = new SehirlerAdapter(mContext, liste, universitelerDAOinterface);
-
                 }
                 rv.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<UniversitelerCevap> call, Throwable t) {
-
-
             }
         });
-
     }
-
 }

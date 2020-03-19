@@ -1,6 +1,6 @@
-package com.tanitim.universitetanitim;
+package com.tanitim.universitetanitim.Activity;
 
-import android.graphics.Typeface;
+
 import android.os.Bundle;
 
 import android.view.View;
@@ -16,19 +16,11 @@ import com.tanitim.universitetanitim.Fragments.KarsilastirFragment;
 
 import com.tanitim.universitetanitim.Fragments.SehirlerFragment;
 import com.tanitim.universitetanitim.Fragments.UniversitelerFragment;
-
-
-
+import com.tanitim.universitetanitim.R;
 
 public class MainActivity extends AppCompatActivity {
-
-
-
     private ViewPager viewPager;
-
-
     //Fragments
-
     UniversitelerFragment universitelerFragment;
     AnasayfaFragment anasayfaFragment;
     KarsilastirFragment karsilastirFragment;
@@ -39,13 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         viewPager = findViewById(R.id.view_pager);
-
-
         final BubbleNavigationLinearView bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
-   //     bubbleNavigationLinearView.setTypeface(Typeface.createFromAsset(getAssets(), "rubok.ttc"));
-
+        //     bubbleNavigationLinearView.setTypeface(Typeface.createFromAsset(getAssets(), "rubok.ttc"));
         bubbleNavigationLinearView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
             public void onNavigationChanged(View view, int position) {
@@ -77,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 bubbleNavigationLinearView.setCurrentActiveItem(position);
-
-
             }
 
             @Override
@@ -92,11 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        anasayfaFragment =new AnasayfaFragment();
-        universitelerFragment =new UniversitelerFragment();
-        karsilastirFragment =new KarsilastirFragment();
-        sehirlerFragment =new SehirlerFragment();
-
+        anasayfaFragment = new AnasayfaFragment();
+        universitelerFragment = new UniversitelerFragment();
+        karsilastirFragment = new KarsilastirFragment();
+        sehirlerFragment = new SehirlerFragment();
         adapter.addFragment(anasayfaFragment);
         adapter.addFragment(universitelerFragment);
         adapter.addFragment(karsilastirFragment);

@@ -1,6 +1,5 @@
 package com.tanitim.universitetanitim.Fragments;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -35,10 +34,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-
 public class UniversitelerFragment extends Fragment implements SearchView.OnQueryTextListener {
-
-
     public UniversitelerFragment() {
     }
 
@@ -67,19 +63,15 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         adapter = new UniversitelerAdapter(getContext(), universitelerListe, universitelerDAOinterface);
         rv.setAdapter(adapter);
         setHasOptionsMenu(true);
-
-
         //   progressBar.getIndeterminateDrawable().setColorFilter(getResources()
         //         .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN);
-
-
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-// toolbar setup
+        // toolbar setup
         inflater.inflate(R.menu.toolbar_menu, menu);
         MenuItem item = menu.findItem(R.id.action_ara);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
@@ -92,7 +84,6 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
     }
 
     public void tumUniversiteler() {
-
         universitelerDAOinterface.tumUniversiteler().enqueue(new Callback<UniversitelerCevap>() {
             @Override
             public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
@@ -106,8 +97,6 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
 
             }
         });
-
-
     }
 
     @Override
@@ -121,28 +110,20 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         return false;
     }
 
-
     public void kelimeAra(final String aramaKelime) {
-
         universitelerDAOinterface.universiteAra(aramaKelime).enqueue(new Callback<UniversitelerCevap>() {
             @Override
             public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
                 List<Universiteler> liste = response.body().getUniversiteler();
                 if (liste != null) {
                     adapter = new UniversitelerAdapter(mContext, liste, universitelerDAOinterface);
-
                 }
                 rv.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<UniversitelerCevap> call, Throwable t) {
-
-
             }
         });
-
     }
-
-
 }

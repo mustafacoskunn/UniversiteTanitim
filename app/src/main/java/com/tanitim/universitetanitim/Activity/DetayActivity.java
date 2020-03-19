@@ -1,8 +1,6 @@
-
-package com.tanitim.universitetanitim;
+package com.tanitim.universitetanitim.Activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,10 +8,9 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.jaeger.library.StatusBarUtil;
-
-
 import com.squareup.picasso.Picasso;
 import com.tanitim.universitetanitim.Models.Universiteler;
+import com.tanitim.universitetanitim.R;
 
 public class DetayActivity extends BaseActivity {
     private TextView textViewIsim;
@@ -22,54 +19,27 @@ public class DetayActivity extends BaseActivity {
     private Toolbar mToolbar;
     private View mViewNeedOffset;
     private ImageView detayImage;
-
-
-
     private int mAlpha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detay);
-
-      //  textViewIsim = findViewById(R.id.textViewIsim);
-      //  textViewID = findViewById(R.id.textViewID);
-
-
+        //  textViewIsim = findViewById(R.id.textViewIsim);
+        //  textViewID = findViewById(R.id.textViewID);
         detayImage = findViewById(R.id.detayImage);
         mToolbar = findViewById(R.id.toolbar);
         mViewNeedOffset = findViewById(R.id.view_need_offset);
         StatusBarUtil.setTranslucentForImageView(DetayActivity.this, 100, mViewNeedOffset);
-
-
         setSupportActionBar(mToolbar);
         textViewIsim = findViewById(R.id.textViewIsim);
         textViewID = findViewById(R.id.textViewID);
-
         universite = (Universiteler) getIntent().getSerializableExtra("nesne");
         textViewIsim.setText(universite.getIsim());
-        textViewID.setText(universite.getBolge()+" BÖLGESİ");
-
-
+        textViewID.setText(universite.getBolge() + " BÖLGESİ");
         Picasso.with(DetayActivity.this)
-                .load("https://tohere.net/yedek/resim/"+universite.getSlug()+".webp")
+                .load("https://tohere.net/yedek/resim/" + universite.getSlug() + ".webp")
                 .into(detayImage);
-
-//
-
-        Log.e("getEposta:",universite.getEposta());
-        Log.e("getIl:",universite.getIl());
-        Log.e("getIsim:",universite.getIsim());
-        Log.e("getKurulus:",universite.getKurulus());
-        Log.e("getRektor:",universite.getRektor());
-        Log.e("getSlug:",universite.getSlug());
-        Log.e("getTur:",universite.getTur());
-        Log.e("getWebsite:",universite.getWebsite());
-        Log.e("getToplam:",String.valueOf(universite.getToplam()));
-
-
-
-
-
 
 
     }

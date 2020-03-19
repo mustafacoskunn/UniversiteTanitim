@@ -15,14 +15,14 @@ public interface UniversitelerDAOinterface {
 
     @POST("yedek/universite_ara.php")
     @FormUrlEncoded
-    Call<UniversitelerCevap> universiteAra(@Field("isim" )String isim);
+    Call<UniversitelerCevap> universiteAra(@Field("isim") String isim);
 
     @POST("yedek/il_ara.php")
     @FormUrlEncoded
-    Call<UniversitelerCevap> ilAra(@Field("il" )String il);
+    Call<UniversitelerCevap> ilAra(@Field("il") String il);
 
     @POST("yedek/sehiregorefiltre.php")
     @FormUrlEncoded
-    Call<UniversitelerCevap> sehirilAra(@Field("il" )String il);
+    Call<UniversitelerCevap> sehirilAra(@Field("il") String il);
 
 }

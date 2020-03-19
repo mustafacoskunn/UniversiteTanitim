@@ -1,4 +1,3 @@
-
 package com.tanitim.universitetanitim.Models;
 
 import com.google.gson.annotations.Expose;
