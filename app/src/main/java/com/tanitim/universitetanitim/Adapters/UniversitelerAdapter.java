@@ -54,13 +54,15 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
                 universitelerListe.get(position).getSlug() + ".jpg").into(holder.arkaplan);//Universite resim
 
         holder.textViewIsim.setText(universite.getIsim()); //universite adı textview
-        holder.textViewDetay.setText(universite.getIl()); // il textView
+        holder.textViewSehir.setText(universite.getIl() + ""); // il textView
+        holder.textViewDetay.setText(universite.getToplamkadin());
         //carda tıklandığında olucaklar
         holder.universiteler_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetayActivity.class);
                 intent.putExtra("nesne", universite);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
@@ -74,7 +76,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
 
     public class CardTasarimTutucu extends RecyclerView.ViewHolder {
         private TextView textViewIsim;
-        private TextView textViewDetay;
+        private TextView textViewSehir, textViewDetay;
         private CardView universiteler_card;
         private ImageView logo, arkaplan;
 
@@ -82,6 +84,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
             super(itemView);
             textViewIsim = itemView.findViewById(R.id.textViewIsim);
             textViewDetay = itemView.findViewById(R.id.textViewDetay);
+            textViewSehir = itemView.findViewById(R.id.textViewSehir);
             universiteler_card = itemView.findViewById(R.id.universiteler_card);
             logo = itemView.findViewById(R.id.logo);
             arkaplan = itemView.findViewById(R.id.arkaplan);
