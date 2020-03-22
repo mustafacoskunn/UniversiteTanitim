@@ -3,6 +3,7 @@ package com.tanitim.universitetanitim.Adapters;
 import android.content.Context;
 import android.content.Intent;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.tanitim.universitetanitim.Activity.DetayActivity;
+import com.tanitim.universitetanitim.Fragments.DetayBilgiFragment;
 import com.tanitim.universitetanitim.R;
 import com.tanitim.universitetanitim.Models.Universiteler;
 import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
@@ -63,6 +65,7 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
                 Intent intent = new Intent(mContext, DetayActivity.class);
                 intent.putExtra("nesne", universite);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 mContext.startActivity(intent);
             }
         });
