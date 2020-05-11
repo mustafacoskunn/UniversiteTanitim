@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -14,12 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -54,6 +57,7 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
     private ArrayList<Universiteler> universitelerListe;
     private UniversitelerAdapter adapter;
     private UniversitelerDAOinterface universitelerDAOinterface;
+
     public static Context mContext;
     public OkHttpClient okHttpClient;
     private static int cacheSize = 10 * 1024 * 1024; // 10 MiB
@@ -70,6 +74,7 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         universitelerDAOinterface = ApiUtils.getUniversilerDAOinterface();
         rv.setHasFixedSize(true);
+
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         universitelerListe = new ArrayList<>();
         tumUniversiteler();
@@ -106,50 +111,6 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-/*
-    public void tumUniversiteler() {
-        Cache cache = new Cache(mContext.getCacheDir(), cacheSize);
-
-        okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public okhttp3.Response intercept(Interceptor.Chain chain)
-                            throws IOException {
-                        Request request = chain.request();
-                        if (!isNetworkAvailable()) {
-                            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale \
-                            request = request
-                                    .newBuilder()
-                                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                                    .build();
-                        }
-                        return chain.proceed(request);
-                    }
-                })
-                .build();
-
-        Retrofit.Builder builder = new Retrofit.Builder() // bu çözüm bul çok fazla kod
-                .baseUrl("https://tohere.net/")
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create());
-
-        Retrofit retrofit = builder.build();
-        UniversitelerDAOinterface universitelerDAOinterface1 = retrofit.create(UniversitelerDAOinterface.class);
-        universitelerDAOinterface1.tumUniversiteler().enqueue(new Callback<UniversitelerCevap>() {
-            @Override
-            public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
-                List<Universiteler> liste = response.body().getUniversiteler();
-                adapter = new UniversitelerAdapter(mContext, liste, universitelerDAOinterface);
-                rv.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<UniversitelerCevap> call, Throwable t) {
-
-            }
-        });
-    } */
 
 
     public void tumUniversiteler() {
@@ -159,6 +120,9 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
                 List<Universiteler> liste = response.body().getUniversiteler();
                 adapter = new UniversitelerAdapter(mContext, liste, universitelerDAOinterface);
                 rv.setAdapter(adapter);
+
+
+
             }
 
             @Override
@@ -166,6 +130,7 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
 
             }
         });
+
     }
 
     @Override

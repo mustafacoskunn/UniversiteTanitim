@@ -105,4 +105,6 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
             arkaplan = itemView.findViewById(R.id.arkaplan);
         }
     }
+
+
 }
