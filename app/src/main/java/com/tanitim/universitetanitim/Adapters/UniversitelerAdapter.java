@@ -3,23 +3,31 @@ package com.tanitim.universitetanitim.Adapters;
 import android.content.Context;
 import android.content.Intent;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.tanitim.universitetanitim.Activity.DetayActivity;
 import com.tanitim.universitetanitim.Fragments.DetayBilgiFragment;
 import com.tanitim.universitetanitim.R;
 import com.tanitim.universitetanitim.Models.Universiteler;
 import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
 
+import java.io.IOException;
 import java.util.List;
 
 public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdapter.CardTasarimTutucu> {
@@ -46,14 +54,13 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
         final Universiteler universite = universitelerListe.get(position);
 
 
-       /* holder.resimProgress.getIndeterminateDrawable().setColorFilter(mContext.getResources()
-                .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN); //ProgressBar Rengi */
 
 
-        Glide.with(mContext).load("https://tohere.net/yedek/logo/" +
-                universitelerListe.get(position).getSlug() + ".png").into(holder.logo);   //Universite Logo
-        Glide.with(mContext).load("https://tohere.net/yedek/resim/" +
-                universitelerListe.get(position).getSlug() + ".jpg").into(holder.arkaplan);//Universite resim
+
+        Glide.with(mContext).load("https://www.diziblog.net/yekimsdfdf/yedek/logo/" +
+                universitelerListe.get(position).getSlug() + "-logo.jpg").into(holder.logo);   //Universite Logo
+        Glide.with(mContext).load("https://www.diziblog.net/yekimsdfdf/yedek/resim/" +
+                universitelerListe.get(position).getSlug() + "-1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.arkaplan);//Universite resim
 
         holder.textViewIsim.setText(universite.getIsim()); //universite adı textview
         holder.textViewSehir.setText(universite.getIl() + ""); // il textView
@@ -69,6 +76,11 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
                 mContext.startActivity(intent);
             }
         });
+
+
+
+
+
 
     }
 

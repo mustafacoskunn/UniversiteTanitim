@@ -50,7 +50,7 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
 
 
         String il = karakterCevir(universitelerListe.get(position).getIl()); //türkçe karakter silmek için
-        Glide.with(mContext).load("https://tohere.net/yedek/sehir/" +
+        Glide.with(mContext).load("https://www.diziblog.net/yekimsdfdf/yedek/sehir/" +
                 il + "_optimized" + ".jpg").into(holder.arkaplan);//Sehir Resim
 
 

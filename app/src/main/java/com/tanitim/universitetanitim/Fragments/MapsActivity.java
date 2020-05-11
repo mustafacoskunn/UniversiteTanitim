@@ -53,24 +53,19 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     }
 
 
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
-        String location = universite.getAdres();
-        List<Address> addressList = null;
-        Geocoder geocoder = new Geocoder(mContext);
-        try {
-            addressList = geocoder.getFromLocationName(location, 1);
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title(universite.getIsim()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(mContext, "Hata Google Maps Yüklenemedi :(", Toast.LENGTH_LONG).show();
-        }
+
+
+            LatLng latLng = new LatLng(Double.valueOf(universite.getDoktoraerkek()), Double.valueOf(universite.getDoktorakadin()));
+            mMap.addMarker(new MarkerOptions().position(latLng).title(universite.getIsim()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+
 
 
     }

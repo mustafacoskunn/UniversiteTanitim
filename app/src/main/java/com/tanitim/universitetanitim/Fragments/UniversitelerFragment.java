@@ -1,6 +1,9 @@
 package com.tanitim.universitetanitim.Fragments;
 
+import android.app.Service;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,22 +31,32 @@ import com.tanitim.universitetanitim.retrofit.ApiUtils;
 import com.tanitim.universitetanitim.retrofit.UniversitelerCevap;
 import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UniversitelerFragment extends Fragment implements SearchView.OnQueryTextListener {
     public UniversitelerFragment() {
     }
+
 
     private Toolbar toolbar;
     private RecyclerView rv;
     private ArrayList<Universiteler> universitelerListe;
     private UniversitelerAdapter adapter;
     private UniversitelerDAOinterface universitelerDAOinterface;
-    private Context mContext;
+    public static Context mContext;
+    public OkHttpClient okHttpClient;
+    private static int cacheSize = 10 * 1024 * 1024; // 10 MiB
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +95,62 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
 
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+
+    private static boolean isNetworkAvailable() {
+
+
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+/*
+    public void tumUniversiteler() {
+        Cache cache = new Cache(mContext.getCacheDir(), cacheSize);
+
+        okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Interceptor.Chain chain)
+                            throws IOException {
+                        Request request = chain.request();
+                        if (!isNetworkAvailable()) {
+                            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale \
+                            request = request
+                                    .newBuilder()
+                                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                                    .build();
+                        }
+                        return chain.proceed(request);
+                    }
+                })
+                .build();
+
+        Retrofit.Builder builder = new Retrofit.Builder() // bu çözüm bul çok fazla kod
+                .baseUrl("https://tohere.net/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create());
+
+        Retrofit retrofit = builder.build();
+        UniversitelerDAOinterface universitelerDAOinterface1 = retrofit.create(UniversitelerDAOinterface.class);
+        universitelerDAOinterface1.tumUniversiteler().enqueue(new Callback<UniversitelerCevap>() {
+            @Override
+            public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
+                List<Universiteler> liste = response.body().getUniversiteler();
+                adapter = new UniversitelerAdapter(mContext, liste, universitelerDAOinterface);
+                rv.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<UniversitelerCevap> call, Throwable t) {
+
+            }
+        });
+    } */
+
 
     public void tumUniversiteler() {
         universitelerDAOinterface.tumUniversiteler().enqueue(new Callback<UniversitelerCevap>() {

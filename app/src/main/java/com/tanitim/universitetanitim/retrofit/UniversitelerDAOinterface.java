@@ -7,21 +7,21 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface UniversitelerDAOinterface {
-    @GET("yedek/tum_universiteler.php")
+    @GET("yekimsdfdf/yedek/tum_universiteler.php")
     Call<UniversitelerCevap> tumUniversiteler();
 
-    @GET("yedek/sehirler.php")
+    @GET("yekimsdfdf/yedek/sehirler.php")
     Call<UniversitelerCevap> tumSehirler();
 
-    @POST("yedek/universite_ara.php")
+    @POST("yekimsdfdf/yedek/universite_ara.php")
     @FormUrlEncoded
     Call<UniversitelerCevap> universiteAra(@Field("isim") String isim);
 
-    @POST("yedek/il_ara.php")
+    @POST("yekimsdfdf/yedek/il_ara.php")
     @FormUrlEncoded
     Call<UniversitelerCevap> ilAra(@Field("il") String il);
 
-    @POST("yedek/sehiregorefiltre.php")
+    @POST("yekimsdfdf/yedek/sehiregorefiltre.php")
     @FormUrlEncoded
     Call<UniversitelerCevap> sehirilAra(@Field("il") String il);
 
