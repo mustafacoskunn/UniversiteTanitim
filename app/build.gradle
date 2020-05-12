@@ -11,6 +11,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -21,6 +25,7 @@ android {
 repositories {
     mavenCentral()
     google()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -75,7 +80,7 @@ dependencies {
 
     implementation 'com.github.smarteist:autoimageslider:1.2.0'
 
-
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
 
 
 }

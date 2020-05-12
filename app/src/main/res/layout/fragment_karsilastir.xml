@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,39 +7,290 @@
     android:orientation="vertical"
     tools:context=".Fragments.KarsilastirFragment">
 
-    <TextView
-        android:id="@+id/uni1text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        android:text="uni1"/>
-    <TextView
-        android:id="@+id/uni2text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        android:text="uni2"/>
 
-    <Spinner
+    <org.angmarch.views.NiceSpinner
         android:id="@+id/uni1spin"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:arrowTint="@color/white"
+        app:backgroundSelector="@color/purple_inactive"
+        app:fontFamily="@font/light"
+        app:textTint="@color/white" />
 
-        android:spinnerMode="dropdown"/>
-    <Spinner
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/light"
+        android:text="vs"
+        android:textSize="16dp"></TextView>
+
+    <org.angmarch.views.NiceSpinner
         android:id="@+id/uni2spin"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:arrowTint="@color/white"
+        app:backgroundSelector="@color/green_active"
+        app:fontFamily="@font/light"
+        app:textTint="@color/white" />
 
-        android:spinnerMode="dropdown"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/uni1text"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:ellipsize="end"
+
+
+                android:fontFamily="@font/light"
+
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/textTur1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/bolge1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/doktora1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+            <TextView
+                android:id="@+id/yukseklisans1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="38dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/lisans1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/onlisans1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="37dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Öğrenci Sayısı"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Üniversite Türü"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Bölge"
+                android:textSize="15sp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Doktora Öğrencisi"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Yüksek L. Öğrencisi"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Lisans Öğrencisi"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bold"
+                android:text="Ön Lisans Öğrencisi"
+                android:textColor="@color/black"></TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/uni2text"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/textTur2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/bolge2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/doktora2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/yukseklisans2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/lisans2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/onlisans2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/light"
+                android:gravity="right"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 </LinearLayout>
+

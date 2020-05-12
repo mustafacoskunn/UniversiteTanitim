@@ -17,6 +17,8 @@ import com.tanitim.universitetanitim.Models.Universiteler;
 import com.tanitim.universitetanitim.R;
 import com.tanitim.universitetanitim.retrofit.SpinnerInterface;
 
+import org.angmarch.views.NiceSpinner;
+import org.angmarch.views.OnSpinnerItemSelectedListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +38,8 @@ public class KarsilastirFragment extends Fragment {
     }
     private ArrayList<Universiteler> universitelerArrayList;
     private ArrayList<String> playerNames = new ArrayList<String>();
-    private Spinner uni2spin,uni1spin;
-    private TextView uni1text,uni2text;
+    private NiceSpinner uni2spin,uni1spin;
+    private TextView uni1text,uni2text,textTur1,textTur2,bolge,doktora,lisans,onlisans,bolge2,doktora2,lisans2,onlisans2,yukseklisans1,yukseklisans2;
     public static Context mContext;
 
     @Override
@@ -48,6 +50,22 @@ public class KarsilastirFragment extends Fragment {
         uni1spin = view.findViewById(R.id.uni1spin);
         uni2text=view.findViewById(R.id.uni2text);
         uni2spin = view.findViewById(R.id.uni2spin);
+        textTur1=view.findViewById(R.id.textTur1);
+        textTur2=view.findViewById(R.id.textTur2);
+
+        bolge=view.findViewById(R.id.bolge1);
+        doktora = view.findViewById(R.id.doktora1);
+        lisans=view.findViewById(R.id.lisans1);
+        onlisans = view.findViewById(R.id.onlisans1);
+        bolge2=view.findViewById(R.id.bolge2);
+        doktora2=view.findViewById(R.id.doktora2);
+        lisans2=view.findViewById(R.id.lisans2);
+        onlisans2=view.findViewById(R.id.onlisans2);
+        yukseklisans1=view.findViewById(R.id.yukseklisans1);
+        yukseklisans2=view.findViewById(R.id.yukseklisans2);
+
+
+
         mContext = container.getContext();
 
         fetchJSON();
@@ -97,12 +115,20 @@ public class KarsilastirFragment extends Fragment {
                 Universiteler spinnerModel = new Universiteler();
                 JSONObject dataobj = dataArray.getJSONObject(i);
                 spinnerModel.setIsim(dataobj.getString("isim"));
-                spinnerModel.setIl(dataobj.getString("il"));
+                spinnerModel.setToplam(dataobj.getString("toplam"));
+                spinnerModel.setTur(dataobj.getString("tur"));
+                spinnerModel.setBolge(dataobj.getString("bolge"));
+                spinnerModel.setDoktoratoplam(dataobj.getString("doktoratoplam"));
+                spinnerModel.setLisanstoplam(dataobj.getString("lisanstoplam"));
+                spinnerModel.setOnlisanstoplam(dataobj.getString("onlisanstoplam"));
+                spinnerModel.setYukseklisanstoplam(dataobj.getString("yukseklisanstoplam"));
+
                 universitelerArrayList.add(spinnerModel);
 
             }
-
+            playerNames.add(0,"Üniversite Seçiniz");
             for (int i = 0; i < universitelerArrayList.size(); i++) {
+
                 playerNames.add(universitelerArrayList.get(i).getIsim());
 
 
@@ -112,31 +138,41 @@ public class KarsilastirFragment extends Fragment {
 
             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext, simple_spinner_item, playerNames);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-            uni1spin.setAdapter(spinnerArrayAdapter);
-            uni2spin.setAdapter(spinnerArrayAdapter);
 
-            uni1spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    uni1text.setText(universitelerArrayList.get(position).getIl());
-                }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+            uni1spin.attachDataSource(playerNames);
+            uni2spin.attachDataSource(playerNames);
 
-                }
-            });
-            uni2spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            uni1spin.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    uni2text.setText(universitelerArrayList.get(position).getIl());
-                }
+                public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
+                    uni1text.setText(universitelerArrayList.get(position).getToplam());
+                    textTur1.setText(universitelerArrayList.get(position).getTur());
+                    bolge.setText(universitelerArrayList.get(position).getBolge());
+                    lisans.setText(universitelerArrayList.get(position).getLisanstoplam());
+                    onlisans.setText(universitelerArrayList.get(position).getOnlisanstoplam());
+                    doktora.setText(universitelerArrayList.get(position).getDoktoratoplam());
+                    yukseklisans1.setText(universitelerArrayList.get(position).getYukseklisanstoplam());
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
 
                 }
             });
+
+
+            uni2spin.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
+                @Override
+                public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
+                    uni2text.setText(universitelerArrayList.get(position).getToplam());
+                    textTur2.setText(universitelerArrayList.get(position).getTur());
+                    bolge2.setText(universitelerArrayList.get(position).getBolge());
+                    lisans2.setText(universitelerArrayList.get(position).getLisanstoplam());
+                    onlisans2.setText(universitelerArrayList.get(position).getOnlisanstoplam());
+                    doktora2.setText(universitelerArrayList.get(position).getDoktoratoplam());
+                    yukseklisans2.setText(universitelerArrayList.get(position).getYukseklisanstoplam());
+
+                }
+            });
+
 
 
         } catch (JSONException e) {

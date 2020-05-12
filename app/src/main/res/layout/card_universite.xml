@@ -84,7 +84,9 @@
                 android:text="Ağrı"
                 android:textColor="@color/white"
                 android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/bold"
+                />
 
             <TextView
                 android:id="@+id/textViewIsim"
@@ -100,6 +102,7 @@
                 android:singleLine="true"
                 android:text="Yasir Ameen"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:fontFamily="@font/normal"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
@@ -110,6 +113,7 @@
                 android:layout_below="@+id/line"
                 android:layout_alignStart="@+id/line"
                 android:layout_alignLeft="@+id/line"
+                android:fontFamily="@font/normal"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
