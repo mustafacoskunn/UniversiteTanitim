@@ -6,9 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -36,34 +34,34 @@ import static android.R.layout.simple_spinner_item;
 public class KarsilastirFragment extends Fragment {
     public KarsilastirFragment() {
     }
+
     private ArrayList<Universiteler> universitelerArrayList;
     private ArrayList<String> playerNames = new ArrayList<String>();
-    private NiceSpinner uni2spin,uni1spin;
-    private TextView uni1text,uni2text,textTur1,textTur2,bolge,doktora,lisans,onlisans,bolge2,doktora2,lisans2,onlisans2,yukseklisans1,yukseklisans2;
+    private NiceSpinner uni2spin, uni1spin;
+    private TextView uni1text, uni2text, textTur1, textTur2, bolge, doktora, lisans, onlisans, bolge2, doktora2, lisans2, onlisans2, yukseklisans1, yukseklisans2;
     public static Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_karsilastir, container, false);
-        uni1text=view.findViewById(R.id.uni1text);
+        uni1text = view.findViewById(R.id.uni1text);
         uni1spin = view.findViewById(R.id.uni1spin);
-        uni2text=view.findViewById(R.id.uni2text);
+        uni2text = view.findViewById(R.id.uni2text);
         uni2spin = view.findViewById(R.id.uni2spin);
-        textTur1=view.findViewById(R.id.textTur1);
-        textTur2=view.findViewById(R.id.textTur2);
+        textTur1 = view.findViewById(R.id.textTur1);
+        textTur2 = view.findViewById(R.id.textTur2);
 
-        bolge=view.findViewById(R.id.bolge1);
+        bolge = view.findViewById(R.id.bolge1);
         doktora = view.findViewById(R.id.doktora1);
-        lisans=view.findViewById(R.id.lisans1);
+        lisans = view.findViewById(R.id.lisans1);
         onlisans = view.findViewById(R.id.onlisans1);
-        bolge2=view.findViewById(R.id.bolge2);
-        doktora2=view.findViewById(R.id.doktora2);
-        lisans2=view.findViewById(R.id.lisans2);
-        onlisans2=view.findViewById(R.id.onlisans2);
-        yukseklisans1=view.findViewById(R.id.yukseklisans1);
-        yukseklisans2=view.findViewById(R.id.yukseklisans2);
-
+        bolge2 = view.findViewById(R.id.bolge2);
+        doktora2 = view.findViewById(R.id.doktora2);
+        lisans2 = view.findViewById(R.id.lisans2);
+        onlisans2 = view.findViewById(R.id.onlisans2);
+        yukseklisans1 = view.findViewById(R.id.yukseklisans1);
+        yukseklisans2 = view.findViewById(R.id.yukseklisans2);
 
 
         mContext = container.getContext();
@@ -73,6 +71,7 @@ public class KarsilastirFragment extends Fragment {
 
         return view;
     }
+
     private void fetchJSON() {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -98,6 +97,7 @@ public class KarsilastirFragment extends Fragment {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
 
@@ -132,17 +132,16 @@ public class KarsilastirFragment extends Fragment {
                 playerNames.add(universitelerArrayList.get(i).getIsim());
 
 
-
-
             }
 
 
             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext, simple_spinner_item, playerNames);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
 
-            playerNames.add(0,"Üniversite Seçiniz");
+
             uni1spin.attachDataSource(playerNames);
             uni2spin.attachDataSource(playerNames);
+            playerNames.add(0, "Üniversite Seçiniz");
 
 
             uni1spin.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
@@ -150,8 +149,8 @@ public class KarsilastirFragment extends Fragment {
                 public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
 
 
-                    int pozisyon=position-1;
-                    if (position==0) {
+                    int pozisyon = position - 1;
+                    if (position == 0) {
                         uni1text.setText("");
                         textTur1.setText("");
                         bolge.setText("");
@@ -159,9 +158,8 @@ public class KarsilastirFragment extends Fragment {
                         onlisans.setText("");
                         doktora.setText("");
                         yukseklisans1.setText("");
-                        pozisyon=0;
-                    }
-                    else {
+                        pozisyon = 0;
+                    } else {
 
 
                         uni1text.setText(universitelerArrayList.get(pozisyon).getToplam());
@@ -180,8 +178,8 @@ public class KarsilastirFragment extends Fragment {
                 @Override
                 public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
 
-                    int pozisyon=position-1;
-                    if (position==0) {
+                    int pozisyon = position - 1;
+                    if (position == 0) {
                         uni2text.setText("");
                         textTur2.setText("");
                         bolge2.setText("");
@@ -189,9 +187,8 @@ public class KarsilastirFragment extends Fragment {
                         onlisans2.setText("");
                         doktora2.setText("");
                         yukseklisans2.setText("");
-                        pozisyon=0;
-                    }
-                    else {
+                        pozisyon = 0;
+                    } else {
 
                         uni2text.setText(universitelerArrayList.get(pozisyon).getToplam());
                         textTur2.setText(universitelerArrayList.get(pozisyon).getTur());
@@ -205,7 +202,6 @@ public class KarsilastirFragment extends Fragment {
 
                 }
             });
-
 
 
         } catch (JSONException e) {
