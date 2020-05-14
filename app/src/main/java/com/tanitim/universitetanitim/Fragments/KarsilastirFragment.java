@@ -126,10 +126,11 @@ public class KarsilastirFragment extends Fragment {
                 universitelerArrayList.add(spinnerModel);
 
             }
-            playerNames.add(0,"Üniversite Seçiniz");
+
             for (int i = 0; i < universitelerArrayList.size(); i++) {
 
                 playerNames.add(universitelerArrayList.get(i).getIsim());
+
 
 
 
@@ -139,22 +140,38 @@ public class KarsilastirFragment extends Fragment {
             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext, simple_spinner_item, playerNames);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
 
-
+            playerNames.add(0,"Üniversite Seçiniz");
             uni1spin.attachDataSource(playerNames);
             uni2spin.attachDataSource(playerNames);
+
 
             uni1spin.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
                 @Override
                 public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
-                    uni1text.setText(universitelerArrayList.get(position).getToplam());
-                    textTur1.setText(universitelerArrayList.get(position).getTur());
-                    bolge.setText(universitelerArrayList.get(position).getBolge());
-                    lisans.setText(universitelerArrayList.get(position).getLisanstoplam());
-                    onlisans.setText(universitelerArrayList.get(position).getOnlisanstoplam());
-                    doktora.setText(universitelerArrayList.get(position).getDoktoratoplam());
-                    yukseklisans1.setText(universitelerArrayList.get(position).getYukseklisanstoplam());
 
 
+                    int pozisyon=position-1;
+                    if (position==0) {
+                        uni1text.setText("");
+                        textTur1.setText("");
+                        bolge.setText("");
+                        lisans.setText("");
+                        onlisans.setText("");
+                        doktora.setText("");
+                        yukseklisans1.setText("");
+                        pozisyon=0;
+                    }
+                    else {
+
+
+                        uni1text.setText(universitelerArrayList.get(pozisyon).getToplam());
+                        textTur1.setText(universitelerArrayList.get(pozisyon).getTur());
+                        bolge.setText(universitelerArrayList.get(pozisyon).getBolge());
+                        lisans.setText(universitelerArrayList.get(pozisyon).getLisanstoplam());
+                        onlisans.setText(universitelerArrayList.get(pozisyon).getOnlisanstoplam());
+                        doktora.setText(universitelerArrayList.get(pozisyon).getDoktoratoplam());
+                        yukseklisans1.setText(universitelerArrayList.get(pozisyon).getYukseklisanstoplam());
+                    }
                 }
             });
 
@@ -162,13 +179,29 @@ public class KarsilastirFragment extends Fragment {
             uni2spin.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
                 @Override
                 public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
-                    uni2text.setText(universitelerArrayList.get(position).getToplam());
-                    textTur2.setText(universitelerArrayList.get(position).getTur());
-                    bolge2.setText(universitelerArrayList.get(position).getBolge());
-                    lisans2.setText(universitelerArrayList.get(position).getLisanstoplam());
-                    onlisans2.setText(universitelerArrayList.get(position).getOnlisanstoplam());
-                    doktora2.setText(universitelerArrayList.get(position).getDoktoratoplam());
-                    yukseklisans2.setText(universitelerArrayList.get(position).getYukseklisanstoplam());
+
+                    int pozisyon=position-1;
+                    if (position==0) {
+                        uni2text.setText("");
+                        textTur2.setText("");
+                        bolge2.setText("");
+                        lisans2.setText("");
+                        onlisans2.setText("");
+                        doktora2.setText("");
+                        yukseklisans2.setText("");
+                        pozisyon=0;
+                    }
+                    else {
+
+                        uni2text.setText(universitelerArrayList.get(pozisyon).getToplam());
+                        textTur2.setText(universitelerArrayList.get(pozisyon).getTur());
+                        bolge2.setText(universitelerArrayList.get(pozisyon).getBolge());
+                        lisans2.setText(universitelerArrayList.get(pozisyon).getLisanstoplam());
+                        onlisans2.setText(universitelerArrayList.get(pozisyon).getOnlisanstoplam());
+                        doktora2.setText(universitelerArrayList.get(pozisyon).getDoktoratoplam());
+                        yukseklisans2.setText(universitelerArrayList.get(pozisyon).getYukseklisanstoplam());
+                    }
+
 
                 }
             });
