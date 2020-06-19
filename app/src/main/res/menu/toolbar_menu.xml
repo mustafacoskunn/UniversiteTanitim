@@ -5,8 +5,12 @@
     <item
         android:id="@+id/action_ara"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Süleyman Demirel Üniversitesi"
+
+        android:tooltipText="Süleyman Demirel Üniversitesi"
         android:titleCondensed="Süleyman Demirel Üniversitesi"
+
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always|collapseActionView" />
+        app:showAsAction="always"
+
+        />
 </menu>

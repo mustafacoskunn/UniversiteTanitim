@@ -127,6 +127,7 @@ public class KarsilastirFragment extends Fragment {
 
             }
 
+            playerNames.clear();
             for (int i = 0; i < universitelerArrayList.size(); i++) {
 
                 playerNames.add(universitelerArrayList.get(i).getIsim());
@@ -135,8 +136,10 @@ public class KarsilastirFragment extends Fragment {
             }
 
 
+
             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext, simple_spinner_item, playerNames);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+
 
 
             uni1spin.attachDataSource(playerNames);

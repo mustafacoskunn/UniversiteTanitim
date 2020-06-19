@@ -7,18 +7,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
-
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        >
 
         <TextView
             android:id="@+id/baslik"
@@ -27,12 +22,123 @@
             android:text="Üniversite Tanıtım"
             android:textSize="24dp"
             android:textColor="@color/black"
-            android:layout_centerHorizontal="true"
+
             android:textStyle="bold"
+            android:fontFamily="@font/bold"
             >
         </TextView>
 
 
-    </RelativeLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Popüler üniversiteler"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/bold"
+            />
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/populerRecylerView"
+           android:layout_width="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_height="wrap_content"
+
+           />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Popüler Şehirler"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/populerSehirRecylerView"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+
+            />
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Üniversiteleri Karşılaştır"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/bold"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+       >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/karsilastir"
+
+           />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="En Sevdiğin\nÜniversiteleri \nKarşılaştır"
+                android:layout_marginTop="20dp"
+
+
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/bold"/>
+
+            <Button
+                android:id="@+id/karsilastirButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:textSize="12sp"
+                android:layout_marginTop="40dp"
+                android:text="Karşılaştır"
+                android:fontFamily="@font/normal"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/button2"
+                android:textAlignment="center"
+                android:onClick="karsilastir"
+
+
+
+                >
+
+            </Button>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
 
 </LinearLayout>

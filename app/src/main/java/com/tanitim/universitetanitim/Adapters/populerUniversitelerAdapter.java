@@ -2,7 +2,6 @@ package com.tanitim.universitetanitim.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +12,20 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.tanitim.universitetanitim.R;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.tanitim.universitetanitim.Activity.DetayActivity;
 import com.tanitim.universitetanitim.Models.Universiteler;
+import com.tanitim.universitetanitim.R;
 import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
-import com.tanitim.universitetanitim.Activity.UniversiteSehir;
 
 import java.util.List;
 
-
-public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTasarimTutucu> {
+public class populerUniversitelerAdapter extends RecyclerView.Adapter<populerUniversitelerAdapter.CardTasarimTutucu> {
     private Context mContext;
     private List<Universiteler> universitelerListe;
     private UniversitelerDAOinterface universitelerDAOinterface;
 
-    public SehirlerAdapter(Context mContext, List<Universiteler> universitelerListe
+    public populerUniversitelerAdapter(Context mContext, List<Universiteler> universitelerListe
             , UniversitelerDAOinterface universitelerDAOinterface) {
         this.mContext = mContext;
         this.universitelerListe = universitelerListe;
@@ -35,7 +34,7 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
 
     @Override
     public CardTasarimTutucu onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_sehir, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.populer_card, parent, false);
 
         return new CardTasarimTutucu(view);
     }
@@ -45,58 +44,52 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
         final Universiteler universite = universitelerListe.get(position);
 
 
-       /* holder.resimProgress.getIndeterminateDrawable().setColorFilter(mContext.getResources()
-                .getColor(R.color.purple_inactive), PorterDuff.Mode.SRC_IN); //ProgressBar Rengi */
 
 
-        String il = karakterCevir(universitelerListe.get(position).getIl()); //türkçe karakter silmek için
-        Glide.with(mContext).load("https://www.tohere.net/yekimsdfdf/yedek/sehir/" +
-                il + "_optimized" + ".jpg").into(holder.arkaplan);//Sehir Resim
+        Glide.with(mContext).load("https://www.tohere.net/yekimsdfdf/yedek/resim/" +
+                universitelerListe.get(position).getSlug() + "-1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.arkaplan);//Universite resim
 
-
-        holder.textViewSehir.setText(universite.getIl()); //   // il textView
-
+        holder.textViewIsim.setText(universite.getIsim()); //universite adı textview
+      //  holder.textViewSehir.setText(universite.getIl() + ""); // il textView
 
         //carda tıklandığında olucaklar
-        holder.sehirler_card.setOnClickListener(new View.OnClickListener() {
+        holder.universiteler_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, UniversiteSehir.class);
+                Intent intent = new Intent(mContext, DetayActivity.class);
                 intent.putExtra("nesne", universite);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 mContext.startActivity(intent);
             }
         });
 
-    }
 
-    public static String karakterCevir(String kelime) {
-        String mesaj = kelime;
-        char[] oldValue = new char[]{'ö', 'Ö', 'ü', 'Ü', 'ç', 'Ç', 'İ', 'ı', 'Ğ', 'ğ', 'Ş', 'ş'};
-        char[] newValue = new char[]{'o', 'O', 'u', 'U', 'c', 'C', 'I', 'i', 'G', 'g', 'S', 's'};
-        for (int sayac = 0; sayac < oldValue.length; sayac++) {
-            mesaj = mesaj.replace(oldValue[sayac], newValue[sayac]);
-        }
-        return mesaj;
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
-
         return universitelerListe.size();
-
     }
 
     public class CardTasarimTutucu extends RecyclerView.ViewHolder {
-        private TextView textViewSehir;
-        private CardView sehirler_card;
-        private ImageView arkaplan;
+        private TextView textViewIsim;
+        //private TextView textViewSehir;
+        private CardView universiteler_card;
+        private ImageView  arkaplan;
 
         public CardTasarimTutucu(View itemView) {
             super(itemView);
-            textViewSehir = itemView.findViewById(R.id.textViewSehir);
-            sehirler_card = itemView.findViewById(R.id.sehirler_card);
+            textViewIsim = itemView.findViewById(R.id.textViewIsim);
+         //   textViewSehir = itemView.findViewById(R.id.textViewSehir);
+            universiteler_card = itemView.findViewById(R.id.universiteler_card);
             arkaplan = itemView.findViewById(R.id.arkaplan);
-
         }
     }
+
+
 }

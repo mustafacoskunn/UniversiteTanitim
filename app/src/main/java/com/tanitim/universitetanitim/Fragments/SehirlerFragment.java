@@ -125,6 +125,7 @@ public class SehirlerFragment extends Fragment implements SearchView.OnQueryText
             public void onResponse(Call<UniversitelerCevap> call, retrofit2.Response<UniversitelerCevap> response) {
                 List<Universiteler> liste = response.body().getUniversiteler();
                 if (liste != null) {
+
                     adapter = new SehirlerAdapter(mContext, liste, universitelerDAOinterface);
                 }
                 rv.setAdapter(adapter);

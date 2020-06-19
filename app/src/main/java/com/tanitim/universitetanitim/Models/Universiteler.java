@@ -104,6 +104,33 @@ public class Universiteler implements Serializable {
     @Expose
     private String toplam;
 
+    @SerializedName("favoriMi")
+    @Expose
+    private String favoriMi;
+
+    @SerializedName("cihazid")
+    @Expose
+    private String cihazid;
+
+
+
+
+    public String getFavoriMi() {
+        return favoriMi;
+    }
+
+    public void setFavoriMi(String cihazid) {
+        this.favoriMi = favoriMi;
+    }
+
+    public String getCihazid() {
+        return cihazid;
+    }
+
+    public void setCihazid(String cihazid) {
+        this.cihazid = cihazid;
+    }
+
     public String getIsim() {
         return isim;
     }

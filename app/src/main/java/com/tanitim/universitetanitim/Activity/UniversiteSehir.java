@@ -64,9 +64,8 @@ public class UniversiteSehir extends AppCompatActivity implements SearchView.OnQ
         MenuItem item = menu.findItem(R.id.action_ara);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
         EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchEditText.setTextColor(getResources().getColor(R.color.black));
+
         searchEditText.setHintTextColor(getResources().getColor(R.color.hit));
-        ImageView searchClose = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
         searchView.setQueryHint("Süleyman Demirel Üniversitesi");
         searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);

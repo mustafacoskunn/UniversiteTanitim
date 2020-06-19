@@ -2,7 +2,6 @@ package com.tanitim.universitetanitim.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +12,21 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.tanitim.universitetanitim.R;
-import com.tanitim.universitetanitim.Models.Universiteler;
-import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
 import com.tanitim.universitetanitim.Activity.UniversiteSehir;
+import com.tanitim.universitetanitim.Models.Universiteler;
+import com.tanitim.universitetanitim.R;
+import com.tanitim.universitetanitim.retrofit.UniversitelerDAOinterface;
 
 import java.util.List;
 
 
-public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTasarimTutucu> {
+
+public class populerSehilerAdapter extends RecyclerView.Adapter<populerSehilerAdapter.CardTasarimTutucu> {
     private Context mContext;
     private List<Universiteler> universitelerListe;
     private UniversitelerDAOinterface universitelerDAOinterface;
 
-    public SehirlerAdapter(Context mContext, List<Universiteler> universitelerListe
+    public populerSehilerAdapter(Context mContext, List<Universiteler> universitelerListe
             , UniversitelerDAOinterface universitelerDAOinterface) {
         this.mContext = mContext;
         this.universitelerListe = universitelerListe;
@@ -35,7 +35,7 @@ public class SehirlerAdapter extends RecyclerView.Adapter<SehirlerAdapter.CardTa
 
     @Override
     public CardTasarimTutucu onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_sehir, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.populer_sehir_card, parent, false);
 
         return new CardTasarimTutucu(view);
     }

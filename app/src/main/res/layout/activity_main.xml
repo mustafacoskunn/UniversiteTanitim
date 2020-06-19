@@ -73,6 +73,16 @@
             app:bt_icon="@drawable/ic_happy"
             app:bt_shape="@drawable/grey"
             app:bt_title="Şehirler" />
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/favori"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="@color/red_active"
+            app:bt_colorInactive="@color/red_inactive"
+            app:bt_icon="@drawable/favori"
+            app:bt_shape="@drawable/grey"
+            app:bt_title="Favoriler" />
 
 
 

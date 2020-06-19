@@ -24,6 +24,18 @@
             android:layout_height="240dp"
             android:scaleType="centerCrop"
             app:layout_collapseMode="parallax"/>
+        <ImageView
+            android:id="@+id/favori"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/nofavori"
+            >
+
+
+        </ImageView>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/logo"
@@ -48,6 +60,7 @@
             >
 
         </com.google.android.material.tabs.TabLayout>
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/detayViewPager"

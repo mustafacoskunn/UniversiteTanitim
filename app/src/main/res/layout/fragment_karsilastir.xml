@@ -57,6 +57,7 @@
                 android:layout_marginTop="40dp"
                 android:ellipsize="end"
 
+                android:textColor="@color/purple_inactive"
 
                 android:fontFamily="@font/light"
 
@@ -70,6 +71,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="35dp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
 
@@ -82,6 +84,7 @@
                 android:layout_marginTop="35dp"
                 android:textSize="15sp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
 
@@ -93,6 +96,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="35dp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
             <TextView
@@ -103,6 +107,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="38dp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
 
@@ -114,6 +119,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
 
@@ -125,6 +131,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="37dp"
                 android:ellipsize="end"
+                android:textColor="@color/purple_inactive"
                 android:fontFamily="@font/light"
                 android:maxLines="1" />
 
@@ -216,6 +223,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />
@@ -227,6 +235,8 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />
@@ -238,6 +248,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1"
@@ -250,6 +261,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />
@@ -261,6 +273,7 @@
                 android:layout_marginTop="38dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />
@@ -272,6 +285,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />
@@ -283,6 +297,7 @@
                 android:layout_marginTop="37dp"
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
+                android:textColor="@color/green_active"
                 android:fontFamily="@font/light"
                 android:gravity="right"
                 android:maxLines="1" />

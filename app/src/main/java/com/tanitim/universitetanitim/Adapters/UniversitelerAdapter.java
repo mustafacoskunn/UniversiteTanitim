@@ -57,9 +57,9 @@ public class UniversitelerAdapter extends RecyclerView.Adapter<UniversitelerAdap
 
 
 
-        Glide.with(mContext).load("https://www.diziblog.net/yekimsdfdf/yedek/logo/" +
+        Glide.with(mContext).load("https://www.tohere.net/yekimsdfdf/yedek/logo/" +
                 universitelerListe.get(position).getSlug() + "-logo.jpg").into(holder.logo);   //Universite Logo
-        Glide.with(mContext).load("https://www.diziblog.net/yekimsdfdf/yedek/resim/" +
+        Glide.with(mContext).load("https://www.tohere.net/yekimsdfdf/yedek/resim/" +
                 universitelerListe.get(position).getSlug() + "-1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.arkaplan);//Universite resim
 
         holder.textViewIsim.setText(universite.getIsim()); //universite adı textview

@@ -94,9 +94,10 @@ public class UniversitelerFragment extends Fragment implements SearchView.OnQuer
         MenuItem item = menu.findItem(R.id.action_ara);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
         EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        ImageView searchClose = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
+
         searchView.setQueryHint("Süleyman Demirel Üniversitesi...");
         searchView.setOnQueryTextListener(this);
+
 
         super.onCreateOptionsMenu(menu, inflater);
     }
